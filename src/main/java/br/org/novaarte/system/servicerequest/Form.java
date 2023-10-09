@@ -7,14 +7,16 @@ public class Form {
 	private boolean requestSound;
 	private boolean requestLighting;
 	private boolean mealToVolunteers;
+	private String additionalInfo;
 	
-	public Form(Client client, Event event, boolean requestSound, boolean requestLighting, boolean mealToVolunteers) {
+	public Form(Client client, Event event, boolean requestSound, boolean requestLighting, boolean mealToVolunteers, String additionalInfo) {
 
 		this.client = client;
 		this.event = event;
 		this.requestSound = requestSound;
 		this.requestLighting = requestLighting;
 		this.mealToVolunteers = mealToVolunteers;
+		this.additionalInfo = additionalInfo;
 	}
 
 	public Client getClient() {
@@ -55,6 +57,14 @@ public class Form {
 
 	public void setMealToVolunteers(boolean mealToVolunteers) {
 		this.mealToVolunteers = mealToVolunteers;
+	}
+
+	public String getAdditionalInfo() {
+		return additionalInfo;
+	}
+
+	public void setAdditionalInfo(String additionalInfo) {
+		this.additionalInfo = additionalInfo;
 	}
 	
 	
