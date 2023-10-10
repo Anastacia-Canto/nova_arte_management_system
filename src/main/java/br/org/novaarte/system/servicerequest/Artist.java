@@ -83,6 +83,24 @@ public class Artist {
 		this.showEnding = showEnding;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("name: ");
+		sb.append(name);
+		sb.append("\ntype: ");
+		sb.append(type);
+		sb.append("\ninstruments: ");
+		sb.append(instruments);
+		sb.append("\nvoices: ");
+		sb.append(voices);
+		sb.append("\nshowBeginning: ");
+		sb.append(showBeginning);
+		sb.append("\nshowEnding: ");
+		sb.append(showEnding);
+		
+		return sb.toString();
+	}
 	
 
 }

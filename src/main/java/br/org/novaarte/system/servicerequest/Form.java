@@ -67,6 +67,24 @@ public class Form {
 		this.additionalInfo = additionalInfo;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("client: \n");
+		sb.append(client);
+		sb.append("\nevent: \n");
+		sb.append(event);
+		sb.append("\nrequestSound: ");
+		sb.append(requestSound);
+		sb.append("\nrequestLighting: ");
+		sb.append(requestLighting);
+		sb.append("\nmealToVolunteers: ");
+		sb.append(mealToVolunteers);
+		sb.append("\nadditionalInfo: ");
+		sb.append(additionalInfo);
+		return sb.toString();
+	}
+	
 	
 	
 }

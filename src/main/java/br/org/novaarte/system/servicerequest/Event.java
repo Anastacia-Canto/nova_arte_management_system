@@ -88,6 +88,28 @@ public class Event {
 		this.stageDimensions = stageDimensions;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("name: ");
+		sb.append(name);
+		sb.append("\nbegin: ");
+		sb.append(begin);
+		sb.append("\nend: ");
+		sb.append(end);
+		sb.append("\nartists: ");
+		sb.append(artists);
+		sb.append("\naddress: ");
+		sb.append(address);
+		sb.append("\nlocationName: ");
+		sb.append(locationName);
+		sb.append("\nlocationCapacity: ");
+		sb.append(locationCapacity);
+		sb.append("\nstageDimensions: ");
+		sb.append(stageDimensions);
+		
+		return sb.toString();
+	}
 	
 	
 	
