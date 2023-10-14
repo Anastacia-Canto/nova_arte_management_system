@@ -13,9 +13,9 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$nova-arte-ms-frontend-primary: mat.define-palette(mat.$indigo-palette);
+$nova-arte-ms-frontend-primary: mat.define-palette(mat.$yellow-palette);
 $nova-arte-ms-frontend-accent: mat.define-palette(
-  mat.$pink-palette,
+  mat.$orange-palette,
   A200,
   A100,
   A400
@@ -26,7 +26,7 @@ $nova-arte-ms-frontend-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$nova-arte-ms-frontend-theme: mat.define-light-theme(
+$nova-arte-ms-frontend-theme: mat.define-dark-theme(
   (
     color: (
       primary: $nova-arte-ms-frontend-primary,
@@ -50,4 +50,16 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h2 {
+  @apply text-lg py-2;
+}
+
+.mdc-notched-outline__notch {
+  border-right: none !important;
+}
+
+mat-form-field {
+  @apply mr-1;
 }
