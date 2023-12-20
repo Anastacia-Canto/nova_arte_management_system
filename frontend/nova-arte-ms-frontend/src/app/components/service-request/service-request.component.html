@@ -1,0 +1,54 @@
+<div class="w-screen">
+  <div class="pt-8 container mx-auto flex flex-col items-center">
+    <h1 class="text-4xl">Solicitar Serviço</h1>
+    <form class="w-full" [formGroup]="serviceRequestForm">
+      <section class="w-full">
+        <h2>Dados do Solicitante</h2>
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input type="text" matInput formControlName="clientName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="clientEmail" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input type="tel" matInput formControlName="clientPhoneNumber" />
+        </mat-form-field>
+      </section>
+      <section class="w-full">
+        <h2>Dados do Evento</h2>
+        <mat-form-field appearance="outline">
+          <mat-label>Nome do evento</mat-label>
+          <input type="text" matInput formControlName="eventName" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Data do evento</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="eventDate"
+            [min]="minEventDate"
+          />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Horário de início</mat-label>
+          <input type="time" matInput formControlName="eventStartTime" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Horário de término</mat-label>
+          <input type="time" matInput formControlName="eventEndTime" />
+        </mat-form-field>
+      </section>
+    </form>
+  </div>
+</div>
