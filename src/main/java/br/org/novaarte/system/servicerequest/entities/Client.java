@@ -1,23 +1,38 @@
-package br.org.novaarte.system.servicerequest;
+package br.org.novaarte.system.servicerequest.entities;
+
+import jakarta.persistence.*;
 
 import java.io.Serializable;
-
-
+@Entity
 public class Client implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
-	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Integer id;
 	private String name;
 	private String email;
 	private Integer phoneNumber;
+
+	@OneToOne
+	private Form form;
 	
-	public Client(String name, String email, Integer phone) {
+	public Client(){}
+	public Client(String name, String email, Integer phone, Form form) {
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phone;
+		this.form = form;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -42,11 +57,20 @@ public class Client implements Serializable {
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	public Form getForm() {
+		return form;
+	}
+
+	public void setForm(Form form) {
+		this.form = form;
+	}
 	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("name: ");
+		
+		sb.append("\nname: ");
 		sb.append(name);
 		sb.append("\nemail: ");
 		sb.append(email);

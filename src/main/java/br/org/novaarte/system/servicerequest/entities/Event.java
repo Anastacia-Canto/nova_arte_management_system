@@ -1,29 +1,48 @@
-package br.org.novaarte.system.servicerequest;
+package br.org.novaarte.system.servicerequest.entities;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
+@Entity
+public class Event implements Serializable {
+
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Integer id;
 	
 	private String name;
 	private LocalDateTime begin;
 	private LocalDateTime end;
-	private List<Artist> artists;
+
+	@OneToMany
+	@JoinColumn(name = "event_id")
+	private List<Artist> artists = new ArrayList<>();
 	private String address;
 	private String locationName;
 	private int locationCapacity;
 	private String stageDimensions;
-	
-	public Event(String name, LocalDateTime begin, LocalDateTime end, List<Artist> artists, String address, String locationName, int locationCapacity) {
+	@OneToOne
+	private Form form;
+
+	public Event(){}
+	public Event(String name, LocalDateTime begin, LocalDateTime end, String address, String locationName, int locationCapacity, Form form) {
 		this.name = name;
 		this.begin = begin;
 		this.end = end;
-		this.artists = artists;
 		this.address = address;
 		this.locationName = locationName;
 		this.locationCapacity = locationCapacity;
+		this.form = form;
 	}
-
+	public Integer getId() { return id; }
+	public void setId(Integer id) { this.id = id; }
 	public String getName() {
 		return name;
 	}
@@ -88,10 +107,12 @@ public class Event {
 		this.stageDimensions = stageDimensions;
 	}
 	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("name: ");
+	
+		sb.append("\nname: ");
 		sb.append(name);
 		sb.append("\nbegin: ");
 		sb.append(begin);

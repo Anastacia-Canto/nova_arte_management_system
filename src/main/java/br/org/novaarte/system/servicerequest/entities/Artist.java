@@ -1,10 +1,20 @@
-package br.org.novaarte.system.servicerequest;
+package br.org.novaarte.system.servicerequest.entities;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Artist {
+@Entity
+public class Artist implements Serializable {
 	
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	private String name;
 	private String type;
 	private List<String> instruments;
@@ -12,17 +22,29 @@ public class Artist {
 	private LocalDateTime showBeginning;
 	private LocalDateTime showEnding;
 	
+	@ManyToOne
+	private Event event;
 	
+	public Artist(){}
 	public Artist(String name, String type, List<String> instruments, int voices, LocalDateTime showBeginning,
-			LocalDateTime showEnding) {
+			LocalDateTime showEnding, Event event) {
 		this.name = name;
 		this.type = type;
 		this.instruments = instruments;
 		this.voices = voices;
 		this.showBeginning = showBeginning;
 		this.showEnding = showEnding;
+		this.event = event;
+
+	}
+	
+	public Integer getId() {
+		return id;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -83,10 +105,20 @@ public class Artist {
 		this.showEnding = showEnding;
 	}
 	
+	public Event getEvent() {
+		return event;
+	}
+	
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("name: ");
+//		sb.append("id: ");
+//		sb.append(id);
+		sb.append("\nname: ");
 		sb.append(name);
 		sb.append("\ntype: ");
 		sb.append(type);
