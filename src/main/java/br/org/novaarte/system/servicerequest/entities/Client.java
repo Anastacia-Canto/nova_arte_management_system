@@ -19,11 +19,10 @@ public class Client implements Serializable {
 	private Form form;
 	
 	public Client(){}
-	public Client(String name, String email, Integer phone, Form form) {
+	public Client(String name, String email, Integer phone) {
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phone;
-		this.form = form;
 	}
 
 	public Integer getId() {

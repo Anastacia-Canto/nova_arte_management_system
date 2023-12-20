@@ -26,16 +26,11 @@ public class Artist implements Serializable {
 	private Event event;
 	
 	public Artist(){}
-	public Artist(String name, String type, List<String> instruments, int voices, LocalDateTime showBeginning,
-			LocalDateTime showEnding, Event event) {
+	public Artist(String name, String type, List<String> instruments, int voices) {
 		this.name = name;
 		this.type = type;
 		this.instruments = instruments;
 		this.voices = voices;
-		this.showBeginning = showBeginning;
-		this.showEnding = showEnding;
-		this.event = event;
-
 	}
 	
 	public Integer getId() {

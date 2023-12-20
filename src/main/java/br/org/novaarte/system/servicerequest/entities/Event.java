@@ -21,7 +21,7 @@ public class Event implements Serializable {
 	private LocalDateTime begin;
 	private LocalDateTime end;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "event_id")
 	private List<Artist> artists = new ArrayList<>();
 	private String address;
@@ -32,14 +32,13 @@ public class Event implements Serializable {
 	private Form form;
 
 	public Event(){}
-	public Event(String name, LocalDateTime begin, LocalDateTime end, String address, String locationName, int locationCapacity, Form form) {
+	public Event(String name, LocalDateTime begin, LocalDateTime end, String address, String locationName, int locationCapacity) {
 		this.name = name;
 		this.begin = begin;
 		this.end = end;
 		this.address = address;
 		this.locationName = locationName;
 		this.locationCapacity = locationCapacity;
-		this.form = form;
 	}
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
@@ -106,7 +105,14 @@ public class Event implements Serializable {
 	public void setStageDimensions(String stageDimensions) {
 		this.stageDimensions = stageDimensions;
 	}
-	
+
+	public Form getForm() {
+		return form;
+	}
+
+	public void setForm(Form form) {
+		this.form = form;
+	}
 
 	@Override
 	public String toString() {

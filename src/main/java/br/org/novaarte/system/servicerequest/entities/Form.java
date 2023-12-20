@@ -19,10 +19,10 @@ public class Form implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne(mappedBy = "form")
+	@OneToOne(mappedBy = "form", cascade = CascadeType.ALL)
 	private Client client;
 
-	@OneToOne(mappedBy = "form")
+	@OneToOne(mappedBy = "form", cascade = CascadeType.ALL)
 	private Event event;
 	private boolean requestSound;
 	private boolean requestLighting;
