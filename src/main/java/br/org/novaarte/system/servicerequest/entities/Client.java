@@ -3,6 +3,9 @@ package br.org.novaarte.system.servicerequest.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Client implements Serializable {
 	
@@ -15,8 +18,10 @@ public class Client implements Serializable {
 	private String email;
 	private Integer phoneNumber;
 
-	@OneToOne
-	private Form form;
+	// This is mapped by foreign key on Form table
+	// The cascade is used on parent entity to propagate SELECT, INSERT, UPDATE, DELETE to child entity database
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	private List<Form> forms = new ArrayList<>();
 	
 	public Client(){}
 	public Client(String name, String email, Integer phone) {
@@ -57,14 +62,15 @@ public class Client implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Form getForm() {
-		return form;
+	public List<Form> getForms() {
+		return forms;
 	}
 
-	public void setForm(Form form) {
-		this.form = form;
-	}
-	
+//	public void setForm(Form form) {
+//		this.form = form;
+//	}
+
+	public void addForm(Form form) { this.forms.add(form); }
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

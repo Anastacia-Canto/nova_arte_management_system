@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,10 +22,10 @@ public class Artist implements Serializable {
 	private int voices;
 	private LocalDateTime showBeginning;
 	private LocalDateTime showEnding;
-	
-	@ManyToOne
-	private Event event;
-	
+
+	// mappedBy receives the name of the field on the other side of relationship
+	@ManyToMany(mappedBy = "artists")
+	private List<Event> events = new ArrayList<>();
 	public Artist(){}
 	public Artist(String name, String type, List<String> instruments, int voices) {
 		this.name = name;
@@ -100,12 +101,12 @@ public class Artist implements Serializable {
 		this.showEnding = showEnding;
 	}
 	
-	public Event getEvent() {
-		return event;
+	public List<Event> getEvents() {
+		return events;
 	}
 	
-	public void setEvent(Event event) {
-		this.event = event;
+	public void addEvent(Event event) {
+		this.events.add(event);
 	}
 	
 	@Override

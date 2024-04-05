@@ -19,11 +19,15 @@ public class Form implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne(mappedBy = "form", cascade = CascadeType.ALL)
+	// Form is the entity that keeps the foreign key to this relation
+	// It means that Form is the owner entity
+	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Client client;
 
-	@OneToOne(mappedBy = "form", cascade = CascadeType.ALL)
+	@OneToOne
 	private Event event;
+
 	private boolean requestSound;
 	private boolean requestLighting;
 	private boolean mealToVolunteers;

@@ -21,14 +21,22 @@ public class Event implements Serializable {
 	private LocalDateTime begin;
 	private LocalDateTime end;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "event_id")
+	// @JoinTable defines which side is the owner entity
+	// the owner column is defined as joinColumns and the other as inverseJoinColumns
+	@ManyToMany
+	@JoinTable(
+			name = "event_artists",
+			joinColumns = @JoinColumn(name = "event_id"),
+			inverseJoinColumns = @JoinColumn(name = "artist_id"))
 	private List<Artist> artists = new ArrayList<>();
+
 	private String address;
 	private String locationName;
 	private int locationCapacity;
 	private String stageDimensions;
+
 	@OneToOne
+	@JoinColumn(name = "form_id")
 	private Form form;
 
 	public Event(){}
@@ -70,8 +78,8 @@ public class Event implements Serializable {
 		return artists;
 	}
 
-	public void setArtists(List<Artist> artists) {
-		this.artists = artists;
+	public void addArtist(Artist artist) {
+		this.artists.add(artist);
 	}
 
 	public String getAddress() {

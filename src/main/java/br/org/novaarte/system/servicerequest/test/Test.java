@@ -34,34 +34,38 @@ public class Test implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Artist artist = new Artist("Marielza Tiscate", "Música", Arrays.asList("Violão"), 1);
+        artist.setShowBeginning(LocalDateTime.of(2024, Month.JANUARY, 20, 18, 0));
+        artist.setShowEnding(LocalDateTime.of(2024, Month.JANUARY, 20, 20, 0));
+        artistRepository.save(artist);
 
         Client client = new Client("Anastácia Canto", "anastacia@email.com", 215487963);
+        clientRepository.save(client);
 
         Event event = new Event("Show da Marielza",
                 LocalDateTime.of(2024, Month.JANUARY, 20, 18, 0),
                 LocalDateTime.of(2024, Month.JANUARY, 20, 19, 0),
                 "Avenida São Félix 601 Vista Alegre", "Lona Cultural de Vista Alegre", 800);
+        eventRepository.save(event);
 
         Form form = new Form(client, event, true, true, true, "");
+        formRepository.save(form);
 
 
-        client.setForm(form);
+        client.addForm(form);
+        clientRepository.save(client);
 
 
-        event.getArtists().add(artist);
+        artist.addEvent(event);
+        event.addArtist(artist);
         event.setForm(form);
 
-        artist.setShowBeginning(LocalDateTime.of(2024, Month.JANUARY, 20, 18, 0));
-        artist.setShowEnding(LocalDateTime.of(2024, Month.JANUARY, 20, 20, 0));
-
-        formRepository.save(form);
-        clientRepository.save(client);
-        eventRepository.save(event);
         artistRepository.save(artist);
+        eventRepository.save(event);
 
-        System.out.println("----------------CHECKING------------------");
-        System.out.println("Form: " + form);
-        System.out.println("Event: " + event);
+
+//        System.out.println("----------------CHECKING------------------");
+//        System.out.println("Form: " + form);
+//        System.out.println("Event: " + event);
 
     }
 }
